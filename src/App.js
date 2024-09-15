@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadPosts } from "./actions";
 
 function App() {
-  const posts = useSelector((state) => state)
+  const posts = useSelector((state) => state.posts)
+
+  const loading = useSelector((state) => state.loading)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -12,7 +15,9 @@ function App() {
 
   return (
     <>
+    <h1>Список постов</h1>
       { 
+      loading ? 'Идет загрузка' : (
       posts.map((item) => {
         return (
           <>
@@ -20,6 +25,7 @@ function App() {
           </>
         )
       })
+    )
     }
     </>
   )
