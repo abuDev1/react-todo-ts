@@ -1,0 +1,40 @@
+.container {
+    width: 600px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+.posts_wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.checkbox, .button {
+    margin: 0 15px;
+}
+
+.button > button {
+    border: none;
+    background-color: darkorange;
+    border-radius: 5px;
+    padding: 6px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+}
+
+.button > button:hover {
+    background-color: black;
+}
+
+.load {
+    text-align: center;
+}
