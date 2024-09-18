@@ -35,6 +35,8 @@ h1 {
     background-color: black;
 }
 
-.load {
+.load > * {
     text-align: center;
+    margin: auto;
 }
+

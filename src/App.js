@@ -1,40 +1,39 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadPosts, removePost } from "./actions";
+import { loadPosts, removePost, updateCheck } from "./redux/actions";
+import ReactLoading from 'react-loading';
+import { Todos } from "./components/Todos";
+
 
 function App() {
-  const posts = useSelector((state) => state.posts)
+  
+  const loading = useSelector((state) => state.loading);
 
-  const loading = useSelector((state) => state.loading)
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadPosts())
-  }, [])
+    dispatch(loadPosts());
+  }, []);
 
   const handleDelete = (id) => {
-    dispatch(removePost(id))
-  }
+    dispatch(removePost(id));
+  };
+
+  const handleChecked = (id, completed) => {
+    dispatch(updateCheck(id, completed));
+  };
 
   return (
     <div className="container">
-      <h1>Список постов</h1>
-      {loading
-        ? <div className="load">Идет загрузка ...</div>
-        : posts.map((item) => {
-            return (
-              <div className="posts_wrapper">
-                <div className="checkbox">
-                  <input type="checkbox" />
-                </div>
-                <div className="posts">{item.body}</div>
-                <div className="button">
-                  <button onClick={() => handleDelete(item.id)}>Удалить</button>
-                </div>
-              </div>
-            );
-          })}
+      <h1>Список дел</h1>
+      {loading ? (
+        <div className="load"><ReactLoading color="#126fcf" type="spin" height={30} width={30}/></div>
+      ) : (
+        <Todos 
+        handleDelete = {handleDelete}
+        handleChecked = {handleChecked}
+        />
+      )}
     </div>
   );
 }
