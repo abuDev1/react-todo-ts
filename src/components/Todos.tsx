@@ -1,16 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Todo } from './Todo';
+import { useTypedSelector } from '../hooks';
 
+interface TodosProps {
+  handleDelete: (id: number) => void
+  handleChecked: (id: number, completed: boolean) => void
+}
 
-export const Todos = ({handleDelete, handleChecked}) => {
+export const Todos: React.FC<TodosProps> = ({handleDelete, handleChecked}) => {
 
-    const posts = useSelector((state) => state.posts);
+    const todos = useTypedSelector((state) => state.todos);
 
+    const users = useTypedSelector((state) => state.users)
   return (
     <>
     {
-    posts.map((item) => {
+    todos.map((item) => {
           return (
            <Todo 
            id = {item.id}
@@ -20,6 +26,9 @@ export const Todos = ({handleDelete, handleChecked}) => {
            handleDelete = {handleDelete}
            handleChecked = {handleChecked}
            title={item.title}
+           key={item.id}
+           userId={item.userId}
+           users = {users}
            />
           );
         })
@@ -27,3 +36,5 @@ export const Todos = ({handleDelete, handleChecked}) => {
     </>
   )
 }
+
+

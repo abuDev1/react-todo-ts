@@ -1,7 +1,14 @@
 import React from 'react'
 import ReactLoading from 'react-loading';
 
-export const Checking = ({handleChecked, completed, checking, id}) => {
+interface CheckingProps {
+  handleChecked: (id: number, completed: boolean) => void
+  completed: boolean
+  checking: boolean
+  id: number
+}
+
+export const Checking: React.FC<CheckingProps> = ({handleChecked, completed, checking, id}) => {
   return (
     <div>
         {
