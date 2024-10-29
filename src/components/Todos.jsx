@@ -5,12 +5,13 @@ import { Todo } from './Todo';
 
 export const Todos = ({handleDelete, handleChecked}) => {
 
-    const posts = useSelector((state) => state.posts);
+    const todos = useSelector((state) => state.todos.todos);
 
+    const users = useSelector((state) => state.users.users)
   return (
     <>
     {
-    posts.map((item) => {
+    todos.map((item) => {
           return (
            <Todo 
            id = {item.id}
@@ -20,6 +21,9 @@ export const Todos = ({handleDelete, handleChecked}) => {
            handleDelete = {handleDelete}
            handleChecked = {handleChecked}
            title={item.title}
+           key={item.id}
+           userId={item.userId}
+           users = {users}
            />
           );
         })
@@ -27,3 +31,5 @@ export const Todos = ({handleDelete, handleChecked}) => {
     </>
   )
 }
+
+
